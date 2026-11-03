@@ -1,8 +1,8 @@
 # Builds music + SFX bed (bed3d.wav) aligned to words_timing.json at tempo 1.12, lead 0.5
 import numpy as np, json, wave
 from scipy.signal import butter, sosfilt
-SR=48000; TEMPO=1.12; LEAD=0.5
-W=json.load(open('words_timing.json')); K=W['K']; D=LEAD+W['orig_len']/TEMPO+1.6; N=int(SR*D)
+SR=48000
+W=json.load(open('words_timing.json')); K=W['K']; TEMPO=W['cfg']['tempo']; LEAD=W['cfg']['lead']; D=LEAD+W['orig_len']/TEMPO+W['cfg']['tail']; N=int(SR*D)
 T={k:LEAD+v/TEMPO for k,v in K.items()}
 t=np.arange(N)/SR; rng=np.random.default_rng(3); L=np.zeros(N); R=np.zeros(N)
 def bp(x,lo,hi): return sosfilt(butter(2,[lo,hi],btype='band',fs=SR,output='sos'),x)
@@ -62,7 +62,7 @@ def clank(): n=int(0.9*SR);tt=np.arange(n)/SR;return sum(np.sin(2*np.pi*f*tt)*np
 scenes=['s1','boat','s2','s3','s4','s5','claw','s6','s6_1999','s7','s8']
 for k in scenes: add(whoosh(0.7),T[k]-0.5,0.8); add(impact(),T[k],0.55)
 add(impact(),0.05,0.9); add(riser(2.0),T['s1']-2.0,0.8)
-for k in ['q_1947','q_2026','s1_1947','s2_1958','s5','s6_1999','s7_2026','f_1947','f_2026']: add(impact(0.7),T[k],0.6)
+for k in ['q_1947','q_2026','s1_1947','s2_1958','s5','s6_1999','s7_2026']: add(impact(0.7),T[k],0.6)
 # counters
 for k,d in [('liaq_4',1.4),('boat_k',1.4),('ayub_10',1.4),('yahya_2',1.4),('bhutto_4',1.4),('zia_11',1.4),('mush_8',1.4)]:
     add(ticks(d),T[k],1.0); add(ding(),T[k]+d,1.0)

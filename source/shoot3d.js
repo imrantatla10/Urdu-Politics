@@ -1,6 +1,6 @@
 // usage: node shoot3d.js preview t1 t2 ... | node shoot3d.js render startFrame endFrame out.mp4
 const {chromium}=require('playwright');const fs=require('fs');const http=require('http');const path=require('path');const {spawn}=require('child_process');
-const CFG={tempo:1.12,lead:0.5,tail:1.6,fps:30};
+const CFG0=JSON.parse(require('fs').readFileSync(__dirname+'/words_timing.json')).cfg;const CFG={tempo:CFG0.tempo,lead:CFG0.lead,tail:CFG0.tail,fps:30};
 const W=JSON.parse(fs.readFileSync(__dirname+'/words_timing.json'));const PAK=JSON.parse(fs.readFileSync(__dirname+'/pak3d.json'));
 const END=CFG.lead+W.orig_len/CFG.tempo+CFG.tail;
 const mime={'.html':'text/html','.js':'text/javascript','.json':'application/json'};
