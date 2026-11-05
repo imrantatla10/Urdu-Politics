@@ -1,1 +1,3 @@
 node_modules
+# raw boundary download (re-fetch: curl -o data/eng_lad.json https://raw.githubusercontent.com/martinjc/UK-GeoJSON/master/json/administrative/eng/lad.json)
+data/
