@@ -1,0 +1,23 @@
+<!doctype html><html><head><meta charset="utf-8">
+<style>
+html,body{margin:0;background:#000;overflow:hidden;width:1080px;height:1920px}
+canvas{display:block;position:absolute;left:0;top:0;width:1080px;height:1920px}
+.hud{position:absolute;left:0;width:1080px;text-align:center;font-family:"Inter Display",Inter,sans-serif;font-weight:900;color:#fff;paint-order:stroke fill;-webkit-text-stroke:12px #000;letter-spacing:2px}
+#title{top:150px;font-size:76px;text-shadow:0 6px 0 rgba(0,0,0,.35)}
+#pctwrap{position:absolute;top:238px;left:0;width:1080px;transform-origin:540px 60px}
+#pct{font-size:104px;letter-spacing:1px;text-shadow:0 0 30px rgba(0,0,0,.35)}
+#name{top:1480px;font-size:58px;white-space:nowrap;letter-spacing:4px;-webkit-text-stroke:11px #000}
+#out{position:absolute;top:400px;left:540px;transform:translateX(-50%);font-family:"Inter Display",Inter,sans-serif;font-weight:900;font-size:92px;padding:6px 40px;border-radius:18px;white-space:nowrap;opacity:0;paint-order:stroke fill;-webkit-text-stroke:10px #000}
+#out.win{color:#3dff6e;background:rgba(0,0,0,.35)} #out.lose{color:#ff3d3d;background:rgba(0,0,0,.35)}
+#flash{position:absolute;inset:0;opacity:0;pointer-events:none}
+</style>
+<script type="importmap">{"imports":{"three":"./node_modules/three/build/three.module.js","three/addons/":"./node_modules/three/examples/jsm/"}}</script>
+</head><body>
+<canvas id="c" width="1080" height="1920"></canvas>
+<div class="hud" id="title">SURVIVAL CHANCE</div>
+<div id="pctwrap"><div class="hud" id="pct" style="position:static">100%</div></div>
+<div class="hud" id="name"></div>
+<div id="out"></div>
+<div id="flash"></div>
+<script type="module" src="./main.js"></script>
+</body></html>
